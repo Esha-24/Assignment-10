@@ -1,0 +1,64 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="customerService" class="org.antwalk.CustomerService">
+		<property name="name" value="upasana" />
+		<property name="url" value="http://www.upasana.co" />
+	</bean>
+
+	<bean id="beforeMethodBean" class="org.antwalk.BeforeMethod" />
+	<bean id="customerServiceProxy"
+		class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="customerService" />
+		<property name="interceptorNames">
+			<list>
+				<value>beforeMethodBean</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="afterMethodBean" class="org.antwalk.AfterMethod" />
+	<bean id="customerServiceProxy1"
+		class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="customerService" />
+		<property name="interceptorNames">
+			<list>
+				<value>afterMethodBean</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="student" class="org.antwalk.Student">
+		<property name="name" value="Anwesha Kayal" />
+		<property name="engMarks" value="96" />
+		<property name="hindiMarks" value="98" />
+		<property name="mathMarks" value="100" />
+	</bean>
+	
+	<bean id="beforeMethodBean1" class="org.antwalk.BeforeMethod" />
+	<bean id="studentProxy"
+		class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="student" />
+		<property name="interceptorNames">
+			<list>
+				<value>beforeMethodBean1</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="afterMethodBean1" class="org.antwalk.AfterMethod" />
+	<bean id="studentProxy1"
+		class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="student" />
+		<property name="interceptorNames">
+			<list>
+				<value>afterMethodBean1</value>
+			</list>
+		</property>
+	</bean>
+	
+</beans>
